@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColdChain | Risk Predictor</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#" onclick="showScreen('home'); return false;">
+      <span class="logo-icon">❄</span> ColdChain<span class="logo-accent">.</span>
+    </a>
+    <span class="online"><span class="dot"></span> Prediction System</span>
+  </header>
+
+  <main>
+    <!-- PAGE 1: START -->
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div class="eyebrow">SMART FOOD SAFETY MONITORING</div>
+        <h1>Keep your food<br>fresh. <span>Predict smarter.</span></h1>
+        <p class="subtitle">
+          Analyze storage conditions and predict whether your fruit
+          is in good or bad condition using machine learning.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showScreen('form')">
+            Get Started <span>→</span>
+          </button>
+          <button class="btn btn-secondary" onclick="showScreen('how')">
+            How it works
+          </button>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🌡️</span>
+            <h3>Temperature</h3>
+            <p>Monitor storage heat</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">💧</span>
+            <h3>Humidity</h3>
+            <p>Check moisture levels</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🍃</span>
+            <h3>Freshness</h3>
+            <p>Predict fruit condition</p>
+          </div>
+        </div>
+
+        <div class="hero-note">Powered by Machine Learning</div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">SIMPLE PROCESS</div>
+        <h1>How it <span>works</span></h1>
+        <p>Three easy steps to estimate fruit storage risk.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="feature-card">
+          <span class="step-number">01</span>
+          <h3>Enter details</h3>
+          <p>Select a fruit and enter its storage conditions.</p>
+        </div>
+        <div class="feature-card">
+          <span class="step-number">02</span>
+          <h3>Analyze data</h3>
+          <p>The trained machine learning model analyzes your inputs.</p>
+        </div>
+        <div class="feature-card">
+          <span class="step-number">03</span>
+          <h3>View prediction</h3>
+          <p>See the predicted class and its estimated probabilities.</p>
+        </div>
+      </div>
+
+      <div class="center-actions">
+        <button class="btn btn-primary" onclick="showScreen('form')">
+          Start Prediction →
+        </button>
+        <button class="btn btn-secondary" onclick="showScreen('home')">
+          ← Home
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE 2: PARAMETERS -->
+    <section id="form" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">STEP 1 OF 2</div>
+        <h1>Storage <span>parameters</span></h1>
+        <p>Enter the available sensor readings to analyze fruit condition.</p>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-heading">
+          <div>
+            <h2>Environmental details</h2>
+            <p>Enter values from your dataset or sensors.</p>
+          </div>
+          <span class="form-symbol">⌁</span>
+        </div>
+
+        <form id="predictionForm">
+          <div class="field">
+            <label for="Fruit">Fruit type</label>
+            <select id="Fruit" required>
+              <option value="Banana">🍌 Banana</option>
+              <option value="Orange">🍊 Orange</option>
+              <option value="Pineapple">🍍 Pineapple</option>
+              <option value="Tomato">🍅 Tomato</option>
+            </select>
+          </div>
+
+          <div class="fields-grid">
+            <div class="field">
+              <label for="Temp">🌡️ Temperature</label>
+              <input id="Temp" type="number" step="any" placeholder="e.g. 25" required>
+            </div>
+
+            <div class="field">
+              <label for="Humid">💧 Humidity (%)</label>
+              <input id="Humid" type="number" step="any" placeholder="e.g. 60" required>
+            </div>
+
+            <div class="field">
+              <label for="Light">💡 Light (Lux)</label>
+              <input id="Light" type="number" step="any" placeholder="e.g. 100" required>
+            </div>
+
+            <div class="field">
+              <label for="CO2">🌫️ CO₂ (ppm)</label>
+              <input id="CO2" type="number" step="any" placeholder="e.g. 400" required>
+            </div>
+          </div>
+
+          <p id="errorMessage" class="error-message"></p>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="showScreen('home')">
+              ← Back
+            </button>
+            <button id="predictButton" type="submit" class="btn btn-primary">
+              Predict Risk <span>→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <p class="privacy-note">ⓘ Prediction depends on the dataset and trained model.</p>
+    </section>
+
+    <!-- PAGE 3: RESULTS -->
+    <section id="result" class="screen">
+      <div class="page-heading">
+        <div class="eyebrow">STEP 2 OF 2</div>
+        <h1>Your prediction <span>report</span></h1>
+        <p>Here is the result based on the parameters you entered.</p>
+      </div>
+
+      <div class="result-card">
+        <div id="resultSymbol" class="result-symbol">✓</div>
+        <p class="result-overline">PREDICTED CONDITION</p>
+        <h2 id="resultTitle">Prediction</h2>
+        <span id="resultBadge" class="result-badge">Analysis complete</span>
+        <p id="resultText" class="result-description"></p>
+
+        <div class="probability-section">
+          <h3>Prediction probabilities</h3>
+          <div class="prob-row">
+            <div><span>Good condition</span><strong id="goodProbability">—</strong></div>
+            <div class="prob-track"><div id="goodBar" class="prob-fill good-fill"></div></div>
+          </div>
+          <div class="prob-row">
+            <div><span>Bad condition</span><strong id="badProbability">—</strong></div>
+            <div class="prob-track"><div id="badBar" class="prob-fill bad-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="showScreen('form')">
+            ↻ Try Again
+          </button>
+          <button class="btn btn-secondary" onclick="showScreen('home')">
+            ⌂ Back to Home
+          </button>
+        </div>
+      </div>
+      <p class="privacy-note">This is a machine-learning estimate, not a food-safety certification.</p>
+    </section>
+  </main>
+
+  <footer>ColdChain Predictor · Smart storage insights</footer>
+  <script src="/script.js"></script>
+</body>
+</html>
