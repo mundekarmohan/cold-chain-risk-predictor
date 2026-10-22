@@ -1,17 +1,25 @@
 
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/",
-      "destination": "/frontend/index.html"
+      "src": "api/predict.py",
+      "use": "@vercel/python"
     },
     {
-      "source": "/style.css",
-      "destination": "/frontend/style.css"
+      "src": "frontend/index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/predict",
+      "dest": "api/predict.py"
     },
     {
-      "source": "/script.js",
-      "destination": "/frontend/script.js"
+      "src": "/(.*)",
+      "dest": "frontend/$1"
     }
   ]
 }
+
