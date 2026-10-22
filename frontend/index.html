@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
   <title>ColdChain | Risk Predictor</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=2">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,14 +18,13 @@
   </header>
 
   <main>
-    <!-- PAGE 1: START -->
     <section id="home" class="screen active">
       <div class="hero">
         <div class="eyebrow">SMART FOOD SAFETY MONITORING</div>
         <h1>Keep your food<br>fresh. <span>Predict smarter.</span></h1>
         <p class="subtitle">
-          Analyze storage conditions and predict whether your fruit
-          is in good or bad condition using machine learning.
+          Analyze storage conditions and estimate fruit condition
+          using a trained machine learning model.
         </p>
 
         <div class="hero-buttons">
@@ -40,47 +40,46 @@
           <div class="feature-card">
             <span class="feature-icon">🌡️</span>
             <h3>Temperature</h3>
-            <p>Monitor storage heat</p>
+            <p>Monitor storage temperature.</p>
           </div>
           <div class="feature-card">
             <span class="feature-icon">💧</span>
             <h3>Humidity</h3>
-            <p>Check moisture levels</p>
+            <p>Track environmental moisture.</p>
           </div>
           <div class="feature-card">
             <span class="feature-icon">🍃</span>
             <h3>Freshness</h3>
-            <p>Predict fruit condition</p>
+            <p>Estimate fruit condition.</p>
           </div>
         </div>
 
-        <div class="hero-note">Powered by Machine Learning</div>
+        <div class="hero-note">POWERED BY MACHINE LEARNING</div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
     <section id="how" class="screen">
       <div class="page-heading">
         <div class="eyebrow">SIMPLE PROCESS</div>
         <h1>How it <span>works</span></h1>
-        <p>Three easy steps to estimate fruit storage risk.</p>
+        <p>Three simple steps to estimate fruit condition.</p>
       </div>
 
       <div class="steps-grid">
         <div class="feature-card">
           <span class="step-number">01</span>
           <h3>Enter details</h3>
-          <p>Select a fruit and enter its storage conditions.</p>
+          <p>Select a fruit and provide its storage readings.</p>
         </div>
         <div class="feature-card">
           <span class="step-number">02</span>
           <h3>Analyze data</h3>
-          <p>The trained machine learning model analyzes your inputs.</p>
+          <p>The trained model evaluates the entered parameters.</p>
         </div>
         <div class="feature-card">
           <span class="step-number">03</span>
-          <h3>View prediction</h3>
-          <p>See the predicted class and its estimated probabilities.</p>
+          <h3>View results</h3>
+          <p>Review the predicted class and estimated probabilities.</p>
         </div>
       </div>
 
@@ -94,19 +93,18 @@
       </div>
     </section>
 
-    <!-- PAGE 2: PARAMETERS -->
     <section id="form" class="screen">
       <div class="page-heading">
         <div class="eyebrow">STEP 1 OF 2</div>
         <h1>Storage <span>parameters</span></h1>
-        <p>Enter the available sensor readings to analyze fruit condition.</p>
+        <p>Enter the available environmental readings.</p>
       </div>
 
       <div class="form-card">
         <div class="form-card-heading">
           <div>
             <h2>Environmental details</h2>
-            <p>Enter values from your dataset or sensors.</p>
+            <p>Use readings from your dataset or sensors.</p>
           </div>
           <span class="form-symbol">⌁</span>
         </div>
@@ -114,7 +112,7 @@
         <form id="predictionForm">
           <div class="field">
             <label for="Fruit">Fruit type</label>
-            <select id="Fruit" required>
+            <select id="Fruit" name="Fruit" required>
               <option value="Banana">🍌 Banana</option>
               <option value="Orange">🍊 Orange</option>
               <option value="Pineapple">🍍 Pineapple</option>
@@ -125,26 +123,26 @@
           <div class="fields-grid">
             <div class="field">
               <label for="Temp">🌡️ Temperature</label>
-              <input id="Temp" type="number" step="any" placeholder="e.g. 25" required>
+              <input id="Temp" name="Temp" type="number" step="any" placeholder="e.g. 25" required>
             </div>
 
             <div class="field">
               <label for="Humid">💧 Humidity (%)</label>
-              <input id="Humid" type="number" step="any" placeholder="e.g. 60" required>
+              <input id="Humid" name="Humid" type="number" step="any" placeholder="e.g. 60" required>
             </div>
 
             <div class="field">
               <label for="Light">💡 Light (Lux)</label>
-              <input id="Light" type="number" step="any" placeholder="e.g. 100" required>
+              <input id="Light" name="Light" type="number" step="any" placeholder="e.g. 100" required>
             </div>
 
             <div class="field">
               <label for="CO2">🌫️ CO₂ (ppm)</label>
-              <input id="CO2" type="number" step="any" placeholder="e.g. 400" required>
+              <input id="CO2" name="CO2" type="number" step="any" placeholder="e.g. 400" required>
             </div>
           </div>
 
-          <p id="errorMessage" class="error-message"></p>
+          <p id="errorMessage" class="error-message" role="alert"></p>
 
           <div class="form-actions">
             <button type="button" class="btn btn-secondary" onclick="showScreen('home')">
@@ -156,15 +154,15 @@
           </div>
         </form>
       </div>
-      <p class="privacy-note">ⓘ Prediction depends on the dataset and trained model.</p>
+
+      <p class="privacy-note">Prediction is based on the dataset and trained model.</p>
     </section>
 
-    <!-- PAGE 3: RESULTS -->
     <section id="result" class="screen">
       <div class="page-heading">
         <div class="eyebrow">STEP 2 OF 2</div>
         <h1>Your prediction <span>report</span></h1>
-        <p>Here is the result based on the parameters you entered.</p>
+        <p>Results based on the storage parameters you entered.</p>
       </div>
 
       <div class="result-card">
@@ -176,10 +174,12 @@
 
         <div class="probability-section">
           <h3>Prediction probabilities</h3>
+
           <div class="prob-row">
             <div><span>Good condition</span><strong id="goodProbability">—</strong></div>
             <div class="prob-track"><div id="goodBar" class="prob-fill good-fill"></div></div>
           </div>
+
           <div class="prob-row">
             <div><span>Bad condition</span><strong id="badProbability">—</strong></div>
             <div class="prob-track"><div id="badBar" class="prob-fill bad-fill"></div></div>
@@ -195,11 +195,12 @@
           </button>
         </div>
       </div>
+
       <p class="privacy-note">This is a machine-learning estimate, not a food-safety certification.</p>
     </section>
   </main>
 
   <footer>ColdChain Predictor · Smart storage insights</footer>
-  <script src="/script.js"></script>
+  <script src="/script.js?v=2"></script>
 </body>
 </html>
